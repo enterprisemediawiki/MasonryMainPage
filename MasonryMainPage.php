@@ -60,14 +60,14 @@ $wgHooks['AjaxAddScript'][] = 'addMasonryFiles';
 function addMasonryFiles ( $out ){
 	global $wgScriptPath;
 
-	$out->addScriptFile( $wgScriptPath .'/extensions/JSCMOD/Masonry/masonry.pkgd.min.js' );
-	$out->addScriptFile( $wgScriptPath .'/extensions/JSCMOD/Masonry/masonry-common.js' );
+	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry.pkgd.min.js' );
+	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry-common.js' );
 
 	$out->addLink( array(
 		'rel' => 'stylesheet',
 		'type' => 'text/css',
 		'media' => "screen",
-		'href' => "$wgScriptPath/extensions/MasonryMainPage/MasonryMainPage.css"
+		'href' => "$wgScriptPath/extensions/MasonryMainPage/Masonry.css"
 	) );
 	
 	return true;

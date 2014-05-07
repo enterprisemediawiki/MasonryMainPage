@@ -37,7 +37,17 @@ Array.min = function(array) {
     return Math.min.apply(Math, array);
 };
 
-/* Function to reload after images are done loading (not working)
+/* Function to reload after images are done loading */
+/* COMMENTED OUT SINCE IT SEEMS TO WORK WITHOUT THIS
+var $container = $('#container');
+// initialize Masonry after all images have loaded  
+$container.imagesLoaded( function() {
+  $container.masonry();
+});
+*/
+
+/* ALTERNATE Function to reload after images are done loading */
+/*
 // initialize Masonry
 var $container = $('#container').masonry();
 // layout Masonry again after all images have loaded
@@ -46,16 +56,18 @@ $container.imagesLoaded( function() {
 });
 */
 
-// Function to make blocks toggle size when clicked
-// $( function() {
+/* Function to make blocks toggle size when clicked */
+/* COMMENTED OUT TO KEEP THINGS SIMPLE AT FIRST
+$( function() {
 
-//   var $container = $('.js-masonry').masonry({
-//     columnWidth: 10
-//   });
+  var $container = $('.js-masonry').masonry({
+    columnWidth: 10
+  });
 
-//   $container.on( 'click', '.item-content', function() {
-//     $( this ).parent('.item').toggleClass('is-expanded');
-//     $container.masonry();
-//   });
+  $container.on( 'click', '.item-content', function() {
+    $( this ).parent('.item').toggleClass('is-expanded');
+    $container.masonry();
+  });
   
-// });
+});
+*/
