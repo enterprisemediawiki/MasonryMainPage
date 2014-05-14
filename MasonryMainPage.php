@@ -1,10 +1,10 @@
 <?php
 /** 
- * The MasonryMainPage extension does .... something...
+ * The MasonryMainPage extension enables use of Masonry blocks within MediaWiki
  * 
- * Documentation: http://???
- * Support:       http://???
- * Source code:   http://???
+ * Documentation: https://github.com/darenwelsh/MediaWiki-MasonryMainPage
+ * Support:       https://github.com/darenwelsh/MediaWiki-MasonryMainPage
+ * Source code:   https://github.com/darenwelsh/MediaWiki-MasonryMainPage
  *
  * @file MasonryMainPage.php
  * @addtogroup Extensions
@@ -52,6 +52,23 @@ $wgExtensionCredits['parserhook'][] = array(
 // No parser function yet
 // $wgHooks['ParserFirstCallInit'][] = 'BlankParserFunction::setup';
 
+/**
+ *  Use a hook to add a meta tag to force IE to not use compatibility mode
+ **/
+$wgHooks['BeforePageDisplay'][] = 'addIECompatibilityMetaTag';
+/**
+ * Adds the following meta tag to the HTML header of all pages
+ * <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+ *
+ * This forces IE to load the page NOT in compatibility mode. Loading 
+ * in compatibility mode breaks the Masonry extension.
+ *
+ * This function should be called on the 'BeforePageDisplay' hook as follows:
+ * $wgHooks['BeforePageDisplay'][] = onBeforePageDisplay( OutputPage &$out, Skin &$skin ) { ... }
+ **/
+function addIECompatibilityMetaTag (&$out, &$skin) {
+	$out->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
+}
 
 /**
  *  JSC-MOD specific javascript modifications
