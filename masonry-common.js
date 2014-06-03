@@ -37,13 +37,24 @@ Array.min = function(array) {
     return Math.min.apply(Math, array);
 };
 
-/* Function to reload after images are done loading */
-var $container = $('#container');
-// initialize Masonry after all images have loaded  
-$container.imagesLoaded( function() {
-  $container.masonry('reload');
-});
+/* Do this Masonry stuff after the page is loaded */
+$(document).ready(function(){
+  /* Function to reload after images are done loading */
+  var $container = $('#container');
+  // initialize
+  $container.masonry({
+    columnWidth: 310,
+    itemSelector: '.item'
+  });
 
+  var msnry = $container.data('masonry');
+
+  // initialize Masonry after all images have loaded  
+  $container.imagesLoaded( function() {
+    $container.masonry();
+    console.log("Images loaded");
+  });
+});
 
 /* ALTERNATE Function to reload after images are done loading */
 /*

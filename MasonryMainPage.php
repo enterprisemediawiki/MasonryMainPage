@@ -78,6 +78,7 @@ function addMasonryFiles ( $out ){
 	global $wgScriptPath;
 
 	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry.pkgd.min.js' );
+	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/imagesloaded.pkgd.min.js' );
 	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry-common.js' );
 
 	$out->addLink( array(
