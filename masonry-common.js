@@ -1,5 +1,5 @@
 var colCount = 0;
-var colWidth = 0;
+var colWidth = 610;
 var margin = 20;
 var windowWidth = 0;
 var blocks = [];
@@ -11,7 +11,8 @@ function setupBlocks() {
     for(var i=0;i<colCount;i++) {
         blocks.push(margin);
     }
-//    alert(blocks);
+      //    alert(blocks); //displays feedback of block placement calc (for troubleshooting)
+      // console.log(windowWidth); //(for troubleshooting)
     positionBlocks();
 }
 
@@ -29,6 +30,7 @@ function positionBlocks() {
             'top':min+'px'
         });
         blocks[index] = min+block.outerHeight()+margin;
+        // console.log(index); //(for troubleshooting)
     });
 }
 
@@ -39,22 +41,26 @@ Array.min = function(array) {
 
 /* Do this Masonry stuff after the page is loaded */
 $(document).ready(function(){
-  /* Function to reload after images are done loading */
-  var $container = $('#container');
-  // initialize
-  $container.masonry({
-    columnWidth: 310,
-    itemSelector: '.item'
-  });
-
-  var msnry = $container.data('masonry');
-
+// $(window).load(function(){ //alternate method (for troubleshooting)
+// initialize
+var $container = $('#mediawiki-masonry-main-page-container');
   // initialize Masonry after all images have loaded  
   $container.imagesLoaded( function() {
-    $container.masonry();
-    console.log("Images loaded");
+    $container.masonry({
+      columnWidth: 310,
+      gutter: 0,
+      itemSelector: '.item'
+    });
+    console.log('Images loaded');
   });
 });
+
+
+// $(document).ready(setupBlocks){console.log('test')}; //(for troubleshooting)
+
+
+
+
 
 /* ALTERNATE Function to reload after images are done loading */
 /*
