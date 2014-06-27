@@ -80,3 +80,64 @@ body { font-family: sans-serif; }
   background: #F90;
 }
 */
+
+/* Boxes like "Featured Article", "Random OCAD" and "Tutorials" on main page, default is green */
+table.main-page-box {
+  width:       100%;
+  border:     1px solid #cef2e0;
+  background: #f5fffa;
+  margin:     0 1% 0 0;
+  padding:    5px;
+}
+table.main-page-box th {
+  color:      black;
+  padding:    0.2em 0.4em;
+  background: #cef2e0;
+  border:     1px solid #a3bfb1;
+  text-align: left;
+  font-size:  130%;
+}
+table.main-page-box td {
+  font-size:      110%;
+  vertical-align: top;
+}
+table.main-page-box-orange {
+  border:       1px solid #ffcc99;
+  background:   #fff5eb;
+}
+table.main-page-box-orange th {
+  background:   #ffc299;
+  border:       1px solid #cc5200;
+}
+table.main-page-box-yellow {
+  background:   #FFFBCC;
+  border:       1px solid #FFF25A;
+}
+table.main-page-box-yellow th {
+  background:   #FFF582;
+  border:       1px solid #FFF25A;
+}
+table.main-page-box-blue {
+  border:       1px solid #cedff2;
+  background:   #f5faff;
+}
+table.main-page-box-blue th {
+  background:   #cedff2;
+  border:       1px solid #a3b0bf;
+}
+table.main-page-box-white {
+  border:       1px solid #aaaaaa;
+  background:   #f7f7fb;
+}
+table.main-page-box-white th {
+  background:   #eeeeee;
+  border:       1px solid #cccccc;
+}
+table.main-page-box-purple {
+  border:       1px solid #9988aa;
+  background:   #f7f7fb;
+}
+table.main-page-box-purple th {
+  background:   #9999cc;
+  border:       1px solid #9988cc;
+}
