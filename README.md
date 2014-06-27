@@ -11,6 +11,7 @@ USAGE
 
 To use this extension in a MediaWiki page, add the following elements to the contents of a wiki page:
 
+```html
 <!--
 
 
@@ -35,3 +36,4 @@ To use this extension in a MediaWiki page, add the following elements to the con
 
 -->
 </div>
+```
