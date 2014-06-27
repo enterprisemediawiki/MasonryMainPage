@@ -23,7 +23,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'name'           => 'MasonryMainPage',
 	'url'            => 'http://github.com/darenwelsh/MediaWiki-MasonryMainPage',
 	'author'         => 'Daren Welsh',
-	'descriptionmsg' => 'masonrymainpage-desc',
+	'descriptionmsg' => 'Enables use of Masonry blocks in MediaWiki',
 	'version'        => '0.1.0'
 );
 
