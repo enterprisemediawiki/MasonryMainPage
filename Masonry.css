@@ -91,13 +91,14 @@ table.main-page-box {
 }
 table.main-page-box th {
   color:      black;
-  padding:    0.2em 0.4em;
+  padding:    10px 7px 10px 7px;
   background: #cef2e0;
   border:     1px solid #a3bfb1;
   text-align: left;
   font-size:  130%;
 }
 table.main-page-box td {
+  padding:    8px 2px 0px 2px;
   font-size:      110%;
   vertical-align: top;
 }
