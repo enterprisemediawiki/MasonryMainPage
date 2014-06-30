@@ -2,9 +2,9 @@
 /** 
  * The MasonryMainPage extension enables use of Masonry blocks within MediaWiki
  * 
- * Documentation: https://github.com/darenwelsh/MediaWiki-MasonryMainPage
- * Support:       https://github.com/darenwelsh/MediaWiki-MasonryMainPage
- * Source code:   https://github.com/darenwelsh/MediaWiki-MasonryMainPage
+ * Documentation: https://github.com/enterprisemediawiki/MasonryMainPage
+ * Support:       https://github.com/enterprisemediawiki/MasonryMainPage
+ * Source code:   https://github.com/enterprisemediawiki/MasonryMainPage
  *
  * @file MasonryMainPage.php
  * @addtogroup Extensions
@@ -21,7 +21,7 @@ if (!defined('MEDIAWIKI')) {
 $wgExtensionCredits['parserhook'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'MasonryMainPage',
-	'url'            => 'http://github.com/darenwelsh/MediaWiki-MasonryMainPage',
+	'url'            => 'http://github.com/enterprisemediawiki/MasonryMainPage',
 	'author'         => 'Daren Welsh',
 	'descriptionmsg' => 'Enables use of Masonry blocks in MediaWiki',
 	'version'        => '0.1.0'

@@ -1,4 +1,4 @@
-MediaWiki-MasonryMainPage
+MasonryMainPage
 =========================
 
 This extension enables the use of Masonry blocks in MediaWiki. 
