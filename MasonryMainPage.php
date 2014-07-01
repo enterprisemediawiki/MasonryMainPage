@@ -30,8 +30,7 @@ $wgExtensionCredits['parserhook'][] = array(
 # $dir: the directory of this file, e.g. something like:
 #	1)	/var/www/wiki/extensions/BlankParserFunction
 # 	2)	C:/xampp/htdocs/wiki/extensions/BlankParserFunction
-// this isn't used, yet
-// $dir = dirname( __FILE__ ) . '/';
+$dir = dirname( __FILE__ ) . '/';
 
 # Location of "message file". Message files are used to store your extension's text
 #	that will be displayed to users. This text is generally stored in a separate
@@ -43,50 +42,20 @@ $wgExtensionCredits['parserhook'][] = array(
 # The "body" file will contain the bulk of a simple parser function extension. 
 #	NEED MORE INFO HERE.
 #
-// No classes yet
-// $wgAutoloadClasses['BlankParserFunction'] = $dir . 'BlankParserFunction.body.php';
+$wgAutoloadClasses['MasonryMainPage'] = $dir . 'MasonryMainPage.body.php';
 
 # This specifies the function that will initialize the parser function.
 #	NEED MORE INFO HERE.
 #
-// No parser function yet
-// $wgHooks['ParserFirstCallInit'][] = 'BlankParserFunction::setup';
+// $wgHooks['ParserFirstCallInit'][] = 'MasonryMainPage::setup';
 
 /**
  *  Use a hook to add a meta tag to force IE to not use compatibility mode
  **/
-$wgHooks['BeforePageDisplay'][] = 'addIECompatibilityMetaTag';
-/**
- * Adds the following meta tag to the HTML header of all pages
- * <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
- *
- * This forces IE to load the page NOT in compatibility mode. Loading 
- * in compatibility mode breaks the Masonry extension.
- *
- * This function should be called on the 'BeforePageDisplay' hook as follows:
- * $wgHooks['BeforePageDisplay'][] = onBeforePageDisplay( OutputPage &$out, Skin &$skin ) { ... }
- **/
-function addIECompatibilityMetaTag (&$out, &$skin) {
-	$out->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
-}
+$wgHooks['BeforePageDisplay'][] = 'MasonryMainPage::addIECompatibilityMetaTag';
 
 /**
  *  JSC-MOD specific javascript modifications
  **/
-$wgHooks['AjaxAddScript'][] = 'addMasonryFiles';
-function addMasonryFiles ( $out ){
-	global $wgScriptPath;
+$wgHooks['AjaxAddScript'][] = 'MasonryMainPage::addMasonryFiles';
 
-	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry.pkgd.min.js' );
-	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/imagesloaded.pkgd.min.js' );
-	$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry-common.js' );
-
-	$out->addLink( array(
-		'rel' => 'stylesheet',
-		'type' => 'text/css',
-		'media' => "screen",
-		'href' => "$wgScriptPath/extensions/MasonryMainPage/Masonry.css"
-	) );
-	
-	return true;
-}
