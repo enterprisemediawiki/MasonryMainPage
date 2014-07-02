@@ -36,18 +36,12 @@ $dir = dirname( __FILE__ ) . '/';
 #	that will be displayed to users. This text is generally stored in a separate
 #	file so it is easy to make text in English, German, Russian, etc, and users can
 #	easily switch to the desired language.
-// No internationalization yet
-// $wgExtensionMessagesFiles['BlankParserFunction'] = $dir . 'BlankParserFunction.i18n.php';
+$wgExtensionMessagesFiles['MasonryMainPage'] = $dir . 'MasonryMainPage.i18n.php';
 
 # The "body" file will contain the bulk of a simple parser function extension. 
 #	NEED MORE INFO HERE.
 #
 $wgAutoloadClasses['MasonryMainPage'] = $dir . 'MasonryMainPage.body.php';
-
-# This specifies the function that will initialize the parser function.
-#	NEED MORE INFO HERE.
-#
-// $wgHooks['ParserFirstCallInit'][] = 'MasonryMainPage::setup';
 
 /**
  *  Use a hook to add a meta tag to force IE to not use compatibility mode
@@ -59,3 +53,7 @@ $wgHooks['BeforePageDisplay'][] = 'MasonryMainPage::addIECompatibilityMetaTag';
  **/
 $wgHooks['AjaxAddScript'][] = 'MasonryMainPage::addMasonryFiles';
 
+# This specifies the function that will initialize the parser function.
+#	NEED MORE INFO HERE.
+#
+$wgHooks['ParserFirstCallInit'][] = 'MasonryMainPage::setup';

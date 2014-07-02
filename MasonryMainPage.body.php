@@ -20,7 +20,7 @@ class MasonryMainPage
 	static function setup ( &$parser ) {
 
 		$parser->setFunctionHook(
-			'my-function', // the name of your parser function, the same as the $magicWords value you set in BlankParserFunction.i18n.php 
+			'masonry-block', // the name of your parser function, the same as the $magicWords value you set in BlankParserFunction.i18n.php 
 			array(
 				'MasonryMainPage',  // class to call function from
 				'renderMasonryMainPage' // function to call within that class
@@ -36,6 +36,10 @@ class MasonryMainPage
 	static function renderMasonryMainPage ( &$parser, $frame, $args ) {
 
 		// self::addJSandCSS(); // adds the javascript and CSS files 
+		// self::addMasonryFiles(); // adds the javascript and CSS files 
+
+		// first_argument  = Type of block (currently requires a template in MW)
+		// second_argument = Color of block (choices in Masonry.css)
 
 		$first_argument = trim( $frame->expand($args[0]) );
 
@@ -44,15 +48,11 @@ class MasonryMainPage
 		else
 			$second_argument = "";
 
-		$text = $first_argument . " " . $second_argument;
+		$text = "<div class='item w2'>
+        <div class='item-content'>"
+         . $first_argument . "</div></div>";
 
-		$text = Xml::tags(
-			'div',
-			array("class" => "MyClass"),
-			$first_argument
-		);
-
-		$text .= $second_argument;
+		// $text .= $second_argument;
 
 		return $text;
 
