@@ -38,21 +38,37 @@ class MasonryMainPage
 		// self::addJSandCSS(); // adds the javascript and CSS files 
 		// self::addMasonryFiles(); // adds the javascript and CSS files 
 
-		// first_argument  = Type of block (currently requires a template in MW)
-		// second_argument = Color of block (choices in Masonry.css)
+		// $Title  = Block title (Such as MW page name)
+		// $Body = Body of block
+		// ****Need to add these args
+		// $Color  = Color of block (choices in Masonry.css)
+		// $Width = Width of block (item or item w2)
 
-		$first_argument = trim( $frame->expand($args[0]) );
+		//Currently assumes $Title is first arg and $Body is second
+		//Need to fix so any order is accepted if user passes named args (Body = "...")
+		$Title = trim( $frame->expand($args[0]) );
 
 		if ( count($args) > 1 )
-			$second_argument = trim( $frame->expand($args[1]) );
+			$Body = trim( $frame->expand($args[1]) );
 		else
-			$second_argument = "";
+			$Body = "";
 
-		$text = "<div class='item w2'>
-        <div class='item-content'>"
-         . $first_argument . "</div></div>";
+		// *******Need to allow for item and item w2
+	        // {{#if: {{{color|}}} | main-page-box-{{{color}}} | }}
+	        // {{#if: {{{style|}}} | style="{{{style|}}}" | }}>
+		$text = "<div class='item'>
+        <div class='item-content'>
+        <table class='main-page-box main-page-box-green'>" .
 
-		// $text .= $second_argument;
+        //This contains the heading of the masonry block (a wiki link to whatever is passed)
+        "<tr><th>[[" . $Title . "]]</th></tr>" .
+		
+		//This contains the body of the masonry block
+		//Wiki code like links can be include; templates and wiki tables cannot
+		"<tr><td>"
+         . $Body . "</td></tr></table></div></div>";
+
+		// $text .= $Body;
 
 		return $text;
 

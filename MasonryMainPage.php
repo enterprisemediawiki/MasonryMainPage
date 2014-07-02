@@ -38,10 +38,10 @@ $dir = dirname( __FILE__ ) . '/';
 #	easily switch to the desired language.
 $wgExtensionMessagesFiles['MasonryMainPage'] = $dir . 'MasonryMainPage.i18n.php';
 
-# The "body" file will contain the bulk of a simple parser function extension. 
+# The "class" file will contain the bulk of a simple parser function extension. 
 #	NEED MORE INFO HERE.
 #
-$wgAutoloadClasses['MasonryMainPage'] = $dir . 'MasonryMainPage.body.php';
+$wgAutoloadClasses['MasonryMainPage'] = $dir . 'MasonryMainPage.class.php';
 
 /**
  *  Use a hook to add a meta tag to force IE to not use compatibility mode
