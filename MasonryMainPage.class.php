@@ -20,22 +20,28 @@ class MasonryMainPage
 	static function setup ( &$parser ) {
 
 		$parser->setFunctionHook(
-			'masonry-block', // the name of your parser function, the same as the $magicWords value you set in BlankParserFunction.i18n.php 
+			// name of parser function
+			// same as $magicWords value set in MasonryMainPage.i18n.php 
+			'masonry-block', 
 			array(
 				'MasonryMainPage',  // class to call function from
 				'renderMasonryMainPage' // function to call within that class
 			),
-			SFH_OBJECT_ARGS // defines the format of how data is passed to your function...don't worry about it for now.
+			SFH_OBJECT_ARGS // defines format of how data is passed to function
 		);
 
 		return true;
 
 	}
 
-
 	static function renderMasonryMainPage ( &$parser, $frame, $args ) {
+		//The $args array looks like this (not necessarily in order):
+		//	[0] => 'Title = Block Title Example' (Such as MW page name), need to set default
+		//	[1] => 'Body = Body of block', need to set default
+		//  [2] => 'Color = Blue' //Optional color argument, default is green (choices in Masonry.css)
+		//  [3] => 'Width = 2' //Optional width of block, default is 1 (item or item w2)
+		// more options to come later like priority, expiration date, etc
 
-		// self::addJSandCSS(); // adds the javascript and CSS files 
 		// self::addMasonryFiles(); // adds the javascript and CSS files 
 
 		// $Title  = Block title (Such as MW page name)
@@ -46,32 +52,64 @@ class MasonryMainPage
 
 		//Currently assumes $Title is first arg and $Body is second
 		//Need to fix so any order is accepted if user passes named args (Body = "...")
-		$Title = trim( $frame->expand($args[0]) );
+		// $Title = trim( $frame->expand($args[0]) );
 
-		if ( count($args) > 1 )
-			$Body = trim( $frame->expand($args[1]) );
-		else
-			$Body = "";
+		// if ( count($args) > 1 )
+		// 	$Body = trim( $frame->expand($args[1]) );
+		// else
+		// 	$Body = "";
 
+
+		//***New method to create array of named args***
+		//Run extractOptions on $args
+		$options = self::extractOptions( $args );
+
+		//Define the main output
 		// *******Need to allow for item and item w2
 	        // {{#if: {{{color|}}} | main-page-box-{{{color}}} | }}
 	        // {{#if: {{{style|}}} | style="{{{style|}}}" | }}>
 		$text = "<div class='item'>
-        <div class='item-content'>
-        <table class='main-page-box main-page-box-green'>" .
+	        <div class='item-content'>
+	        <table class='main-page-box main-page-box-green'>" .
 
-        //This contains the heading of the masonry block (a wiki link to whatever is passed)
-        "<tr><th>[[" . $Title . "]]</th></tr>" .
-		
-		//This contains the body of the masonry block
-		//Wiki code like links can be include; templates and wiki tables cannot
-		"<tr><td>"
-         . $Body . "</td></tr></table></div></div>";
-
-		// $text .= $Body;
-
+	        //This contains the heading of the masonry block (a wiki link to whatever is passed)
+	        "<tr><th>[[" . $options['title'] . "]]</th></tr>" .
+			
+			//This contains the body of the masonry block
+			//Wiki code like links can be include; templates and wiki tables cannot
+			"<tr><td>"
+	         . $options['body'] . "</td></tr></table></div></div>";
+// print_r($options);
 		return $text;
 
+	}
+
+	/**
+	 * Converts an array of values in form [0] => "name=value" into a real
+	 * associative array in form [name] => value
+	 *
+	 * @param array string $options
+	 * @return array $results
+	 */
+	static function extractOptions( array $options ) {
+		$results = array();
+	 
+		foreach ( $options as $option ) {
+			$pair = explode( '=', $option, 2 );
+			if ( count( $pair ) == 2 ) {
+				//***issue right now with trim not working - FIXIT
+				$name = strtolower(trim( $pair[0] )); //Convert to lower case so it is case-insensitive
+				$value = trim( $pair[1] );
+				$results[$name] = $value;
+			}
+		}
+		//Now you've got an array that looks like this:
+		//	[title] => Block Title Example
+		//	[body]  => Body of block
+		//  [color] => Blue
+		//  [width] => 2
+
+		return $results;
 	}
 
 	/**
