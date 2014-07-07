@@ -50,19 +50,9 @@ class MasonryMainPage
 		// $Color  = Color of block (choices in Masonry.css)
 		// $Width = Width of block (item or item w2)
 
-		//Currently assumes $Title is first arg and $Body is second
-		//Need to fix so any order is accepted if user passes named args (Body = "...")
-		// $Title = trim( $frame->expand($args[0]) );
-
-		// if ( count($args) > 1 )
-		// 	$Body = trim( $frame->expand($args[1]) );
-		// else
-		// 	$Body = "";
-
-
 		//***New method to create array of named args***
 		//Run extractOptions on $args
-		$options = self::extractOptions( $args );
+		$options = self::extractOptions( $frame, $args );
 
 		//Define the main output
 		// *******Need to allow for item and item w2
@@ -79,7 +69,7 @@ class MasonryMainPage
 			//Wiki code like links can be include; templates and wiki tables cannot
 			"<tr><td>"
 	         . $options['body'] . "</td></tr></table></div></div>";
-// print_r($options);
+
 		return $text;
 
 	}
@@ -91,13 +81,12 @@ class MasonryMainPage
 	 * @param array string $options
 	 * @return array $results
 	 */
-	static function extractOptions( array $options ) {
+	static function extractOptions( $frame, array $options ) {
 		$results = array();
 	 
 		foreach ( $options as $option ) {
-			$pair = explode( '=', $option, 2 );
+			$pair = explode( '=', $frame->expand($option) , 2 );
 			if ( count( $pair ) == 2 ) {
-				//***issue right now with trim not working - FIXIT
 				$name = strtolower(trim( $pair[0] )); //Convert to lower case so it is case-insensitive
 				$value = trim( $pair[1] );
 				$results[$name] = $value;
