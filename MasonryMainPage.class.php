@@ -36,38 +36,50 @@ class MasonryMainPage
 
 	static function renderMasonryMainPage ( &$parser, $frame, $args ) {
 		//The $args array looks like this (not necessarily in order):
-		//	[0] => 'Title = Block Title Example' (Such as MW page name), need to set default
-		//	[1] => 'Body = Body of block', need to set default
-		//  [2] => 'Color = Blue' //Optional color argument, default is green (choices in Masonry.css)
+		//	[0] => 'Title = Block Title Example' (Such as MW page name) //Optional header
+		//	[1] => 'Body = Body of block'
+		//  [2] => 'Color = Blue' //Optional, default is green (choices in Masonry.css)
+		//                        //Specify 'none' for no color formatting
 		//  [3] => 'Width = 2' //Optional width of block, default is 1 (item or item w2)
 		// more options to come later like priority, expiration date, etc
 
 		// self::addMasonryFiles(); // adds the javascript and CSS files 
 
-		// $Title  = Block title (Such as MW page name)
-		// $Body = Body of block
-		// ****Need to add these args
-		// $Color  = Color of block (choices in Masonry.css)
-		// $Width = Width of block (item or item w2)
-
-		//***New method to create array of named args***
 		//Run extractOptions on $args
 		$options = self::extractOptions( $frame, $args );
 
 		//Define the main output
-		// *******Need to allow for item and item w2
 	        // {{#if: {{{color|}}} | main-page-box-{{{color}}} | }}
 	        // {{#if: {{{style|}}} | style="{{{style|}}}" | }}>
-		$text = "<div class='item'>
+		$text = "<div class='item";
+
+			if ( $options['width']=="2" ) {
+				$text .= " w2";
+			}
+
+			$text .= "'>
 	        <div class='item-content'>
-	        <table class='main-page-box main-page-box-green'>" .
+	        <table class='";
+
+				if ( $options['color']=="none") {
+					$text .= "";
+				} else {
+					$text .= "main-page-box main-page-box-" . $options['color'];
+				}
+
+	        $text .= "'>";
 
 	        //This contains the heading of the masonry block (a wiki link to whatever is passed)
-	        "<tr><th>[[" . $options['title'] . "]]</th></tr>" .
-			
+	        //Check if 'title' has a value
+	        if ( !isset($options['title']) || $options['title']=="" ) {
+		        	//If no 'title' then omit table header tags
+	        } else {
+	        	$text .= "<tr><th>" . $options['title'] . "</th></tr>";
+	        }
+	        			
 			//This contains the body of the masonry block
 			//Wiki code like links can be include; templates and wiki tables cannot
-			"<tr><td>"
+			$text .= "<tr><td>"
 	         . $options['body'] . "</td></tr></table></div></div>";
 
 		return $text;
@@ -78,18 +90,18 @@ class MasonryMainPage
 	 * Converts an array of values in form [0] => "name=value" into a real
 	 * associative array in form [name] => value
 	 *
-	 * @param array string $options
-	 * @return array $results
+	 * @param array string $args
+	 * @return array $options
 	 */
-	static function extractOptions( $frame, array $options ) {
-		$results = array();
+	static function extractOptions( $frame, array $args ) {
+		$options = array();
 	 
-		foreach ( $options as $option ) {
-			$pair = explode( '=', $frame->expand($option) , 2 );
+		foreach ( $args as $arg ) {
+			$pair = explode( '=', $frame->expand($arg) , 2 );
 			if ( count( $pair ) == 2 ) {
 				$name = strtolower(trim( $pair[0] )); //Convert to lower case so it is case-insensitive
 				$value = trim( $pair[1] );
-				$results[$name] = $value;
+				$options[$name] = $value;
 			}
 		}
 		//Now you've got an array that looks like this:
@@ -98,7 +110,21 @@ class MasonryMainPage
 		//  [color] => Blue
 		//  [width] => 2
 
-		return $results;
+		//Check for empties, set defaults
+		//Default 'title'
+		if ( !isset($options['title']) || $options['title']=="" ) {
+		        	$options['title']= ""; //no default, but left here for future options
+	        }
+        //Default 'color'
+        if ( !isset($options['color']) || $options['color']=="" ) {
+	        	$options['color']= "green"; //green is default color
+        }
+        //Default 'width'
+        if ( !isset($options['width']) || $options['width']=="" ) {
+		        	$options['width']= "1"; //default of 1
+	        }
+
+		return $options;
 	}
 
 	/**
