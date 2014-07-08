@@ -51,7 +51,7 @@ var $container = $('#mediawiki-masonry-main-page-container');
       gutter: 0,
       itemSelector: '.item'
     });
-    console.log('Images loaded');
+    // console.log('Images loaded');
   });
 });
 
