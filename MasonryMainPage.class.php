@@ -78,7 +78,7 @@ class MasonryMainPage
 	        }
 	        			
 			//This contains the body of the masonry block
-			//Wiki code like links can be include; templates and wiki tables cannot
+			//Wiki code like links can be included; templates and wiki tables cannot
 			$text .= "<tr><td>"
 	         . $options['body'] . "</td></tr></table></div></div>";
 
