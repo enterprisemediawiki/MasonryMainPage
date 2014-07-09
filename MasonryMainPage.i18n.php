@@ -11,13 +11,13 @@ $messages = array();
 /** English **/
 $messages['en'] = array(
 	'masonrymainpage'         => 'MasonryMainPage',
-	'masonrymainpage-desc'    => 'Enables the masonry-block parser function.',
+	'masonrymainpage-desc'    => 'Enables use of Masonry blocks in MediaWiki via the masonry-block parser function.',
 );
 
 /** German **/
 $messages['de'] = array(
 	'masonrymainpage'         => 'German translation of "MasonryMainPage"',
-	'masonrymainpage-desc'    => 'German translation of "Enables the masonry-block parser function"'
+	'masonrymainpage-desc'    => 'German translation of "Enables use of Masonry blocks in MediaWiki via the masonry-block parser function."'
 );
 
 # The $magicWords array is where we'll declare the name of our parser function
