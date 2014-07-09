@@ -28,8 +28,6 @@ To use this extension in a MediaWiki page, add the following elements to the con
  | body  = 
  }}
 {{#masonry-block: title = 
- | width = 
- | color = 
  | body  = 
  }}
 <!--
@@ -48,6 +46,25 @@ OPTIONS
 <li>width = 1 (or 2) (optional, default is 1).</li>
 <li>color = white (default is green, options in CSS).</li>
 <li>body  = This is the main content. Wiki code like links can be included; templates and wiki tables cannot.</li></ul>
+
+=========================
+TEMPLATES
+=========================
+Instead of clogging your main page with lots of content, you can also use templates.
+
+For example, you could create Template:Pages That Need Help Block with the content below:
+```html
+{{#masonry-block: title=Where to Help | color=orange | body =
+[[Pages that need help]]
+* [[Special:WantedPages|Pages that need to be created]]
+* [[Articles requiring clarification|Pages needing clarification]]
+* [[Articles to be expanded|Pages needing expansion]]
+* [[Articles with unsourced statements|Pages with unsourced statements]]
+}}
+
+```
+
+Then, on the main page, just place {{Pages That Need Help Block}} in the Masonry container div.
 
 =========================
 BACKGROUND INFO
