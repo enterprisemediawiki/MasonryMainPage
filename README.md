@@ -44,8 +44,8 @@ OPTIONS
 
 <ul><li>title = Title of your block (optional, will not show a header if omitted).</li>
 <li>width = 1 (or 2) (optional, default is 1).</li>
-<li>color = white (default is green, options in CSS).</li>
-<li>body  = This is the main content. Wiki code like links can be included; templates and wiki tables cannot.</li></ul>
+<li>color = white (optional, default is green - options in CSS).</li>
+<li>body = This is the main content. Wiki code like links can be included; templates and wiki tables cannot.</li></ul>
 
 =========================
 TEMPLATES
