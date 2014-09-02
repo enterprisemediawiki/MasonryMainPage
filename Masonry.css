@@ -100,6 +100,14 @@ table.main-page-box td {
   font-size:      110%;
   vertical-align: top;
 }
+table.main-page-box-green {
+  border:       1px solid #cef2e0;
+  background:   #f5fffa;
+}
+table.main-page-box-green th {
+  background:   #cef2e0;
+  border:       1px solid #a3bfb1;
+}
 table.main-page-box-orange {
   border:       1px solid #ffcc99;
   background:   #fff5eb;

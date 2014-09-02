@@ -43,14 +43,10 @@ class MasonryMainPage
 		//  [3] => 'Width = 2' //Optional width of block, default is 1 (item or item w2)
 		// more options to come later like priority, expiration date, etc
 
-		// self::addMasonryFiles(); // adds the javascript and CSS files 
-
 		//Run extractOptions on $args
 		$options = self::extractOptions( $frame, $args );
 
 		//Define the main output
-	        // {{#if: {{{color|}}} | main-page-box-{{{color}}} | }}
-	        // {{#if: {{{style|}}} | style="{{{style|}}}" | }}>
 		$text = "<div class='item";
 
 			if ( $options['width']=="2" ) {
