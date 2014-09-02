@@ -9,6 +9,12 @@ Masonry is developed by David DeSandro and information about that script can be 
 USAGE
 =========================
 
+To enable this extension, append the following to LocalSettings.php
+
+```html
+require_once "$IP/extensions/MasonryMainPage/MasonryMainPage.php";
+```
+
 To use this extension in a MediaWiki page, add the following elements to the contents of a wiki page:
 
 ```html
