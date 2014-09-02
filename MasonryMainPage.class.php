@@ -46,37 +46,38 @@ class MasonryMainPage
 		//Run extractOptions on $args
 		$options = self::extractOptions( $frame, $args );
 
+		$itemClass = 'item';
+		if ( $options['width']=="2" ) {
+			$itemClass .= " w2";
+		}
+
+		if ( $options['color']=="none") {
+			$tableClass = '';
+		} else {
+			$tableClass = 'class="main-page-box main-page-box-' . $options['color'] . '"';
+		}
+	
 		//Define the main output
-		$text = "<div class='item";
+		$text = 
+			"<div class='$itemClass'>
+				<div class='item-content'>
+					<table $tableClass>";
 
-			if ( $options['width']=="2" ) {
-				$text .= " w2";
-			}
-
-			$text .= "'>
-	        <div class='item-content'>
-	        <table class='";
-
-				if ( $options['color']=="none") {
-					$text .= "";
-				} else {
-					$text .= "main-page-box main-page-box-" . $options['color'];
-				}
-
-	        $text .= "'>";
-
-	        //This contains the heading of the masonry block (a wiki link to whatever is passed)
-	        //Check if 'title' has a value
-	        if ( !isset($options['title']) || $options['title']=="" ) {
-		        	//If no 'title' then omit table header tags
-	        } else {
-	        	$text .= "<tr><th>" . $options['title'] . "</th></tr>";
-	        }
-	        			
-			//This contains the body of the masonry block
-			//Wiki code like links can be included; templates and wiki tables cannot
-			$text .= "<tr><td>"
-	         . $options['body'] . "</td></tr></table></div></div>";
+		//This contains the heading of the masonry block (a wiki link to whatever is passed)
+		//Check if 'title' has a value
+		if ( !isset($options['title']) || $options['title']=="" ) {
+				//If no 'title' then omit table header tags
+		} else {
+			$text .= "<tr><th>" . $options['title'] . "</th></tr>";
+		}
+		
+		$body = trim( $options['body'] );
+		
+		// This contains the body of the masonry block
+		// Wiki code like links can be included; templates and wiki tables cannot
+		// \n before $body so user input starts on new line without
+		// any whitespace before it.
+		$text .= "<tr><td>\n$body</td></tr></table></div></div>";
 
 		return $text;
 
