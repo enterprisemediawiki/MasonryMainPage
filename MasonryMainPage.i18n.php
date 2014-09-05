@@ -11,13 +11,13 @@ $messages = array();
 /** English **/
 $messages['en'] = array(
 	'masonrymainpage'         => 'MasonryMainPage',
-	'masonrymainpage-desc'    => 'Enables use of Masonry blocks in MediaWiki via the masonry-block parser function.',
+	'masonrymainpage-desc'    => 'Enables use of Masonry blocks in MediaWiki via the masonry-block parser function'
 );
 
 /** German **/
 $messages['de'] = array(
-	'masonrymainpage'         => 'German translation of "MasonryMainPage"',
-	'masonrymainpage-desc'    => 'German translation of "Enables use of Masonry blocks in MediaWiki via the masonry-block parser function."'
+	'masonrymainpage'         => 'MasonryMainPage',
+	'masonrymainpage-desc'    => 'Ermöglicht die mauerwerksverbundartige Anordnung von Inhaltsblöcken auf Wikiseiten'
 );
 
 # The $magicWords array is where we'll declare the name of our parser function
@@ -31,5 +31,5 @@ $magicWords['en'] = array(
 );
 
 $magicWords['de'] = array(
-   'masonry-block' => array( 0, 'mauerblock' ),
+   'masonry-block' => array( 0, 'mauerwerksblock' ),
 );
