@@ -136,22 +136,7 @@ class MasonryMainPage
 	 **/
 	static function addIECompatibilityMetaTag (&$out, &$skin) {
 		$out->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
+		$out->addModules('ext.MasonryMainPage');
 	}
 
-	static function addMasonryFiles ( $out ){
-		global $wgScriptPath;
-
-		$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry.pkgd.min.js' );
-		$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/imagesloaded.pkgd.min.js' );
-		$out->addScriptFile( $wgScriptPath .'/extensions/MasonryMainPage/masonry-common.js' );
-
-		$out->addLink( array(
-			'rel' => 'stylesheet',
-			'type' => 'text/css',
-			'media' => "screen",
-			'href' => "$wgScriptPath/extensions/MasonryMainPage/Masonry.css"
-		) );
-		
-		return true;
-	}
 }
