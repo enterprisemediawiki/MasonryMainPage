@@ -136,7 +136,7 @@ class MasonryMainPage
 	 **/
 	static function addIECompatibilityMetaTag (&$out, &$skin) {
 		$out->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
-		$out->addModules('ext.MasonryMainPage');
+		$out->addModules( 'ext.masonrymainpage.base' );
 	}
 
 }
