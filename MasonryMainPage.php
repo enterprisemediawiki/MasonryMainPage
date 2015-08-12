@@ -42,7 +42,8 @@ $wgResourceModules['ext.masonrymainpage.base'] = array(
 	'scripts' => array( 'imagesloaded.pkgd.js', 'masonry.pkgd.js', 'masonry-common.js' ),
 	'styles' => 'Masonry.css',
 	'localBasePath' => __DIR__,
-	'remoteExtPath' => 'MasonryMainPage'
+	'remoteExtPath' => 'MasonryMainPage',
+	'position' => 'top',
 );
 
 /**
