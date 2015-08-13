@@ -38,13 +38,18 @@ $wgExtensionMessagesFiles['MasonryMainPage'] = $dir . 'MasonryMainPage.i18n.php'
 # The "class" file contains the bulk of a simple parser function extension. 
 $wgAutoloadClasses['MasonryMainPage'] = $dir . 'MasonryMainPage.class.php';
 
+$wgResourceModules['ext.masonrymainpage.base'] = array(
+	'scripts' => array( 'imagesloaded.pkgd.js', 'masonry.pkgd.js', 'masonry-common.js' ),
+	'styles' => 'Masonry.css',
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'MasonryMainPage',
+	'position' => 'top',
+);
+
 /**
  *  Use a hook to add a meta tag to force IE to not use compatibility mode
  **/
 $wgHooks['BeforePageDisplay'][] = 'MasonryMainPage::addIECompatibilityMetaTag';
-
-// Add JS and CSS
-$wgHooks['AjaxAddScript'][] = 'MasonryMainPage::addMasonryFiles';
 
 # This specifies the function that will initialize the parser function.
 $wgHooks['ParserFirstCallInit'][] = 'MasonryMainPage::setup';
