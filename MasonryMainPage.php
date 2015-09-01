@@ -24,7 +24,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'url'            => 'http://github.com/enterprisemediawiki/MasonryMainPage',
 	'author'         => '[https://www.mediawiki.org/wiki/User:Darenwelsh Daren Welsh]',
 	'descriptionmsg' => 'masonrymainpage-desc',
-	'version'        => '0.2.0'
+	'version'        => '0.2.1'
 );
 
 # $dir: the directory of this file, e.g. something like:
