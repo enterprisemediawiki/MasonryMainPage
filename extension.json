@@ -1,0 +1,38 @@
+{
+	"name": "MasonryMainPage",
+	"version": "0.3.0",
+	"author": "[https://www.mediawiki.org/wiki/User:Darenwelsh Daren Welsh]",
+	"url": "http://github.com/enterprisemediawiki/MasonryMainPage",
+	"descriptionmsg": "masonrymainpage-desc",
+	"type": "parserhook",
+	"ExtensionMessagesFiles": {
+		"MasonryMainPageMagic": "Magic.php"
+	},
+	"AutoloadClasses": {
+		"MasonryMainPage": "MasonryMainPage.class.php"
+	},
+	"ResourceModules": {
+		"ext.masonrymainpage.base": {
+			"scripts": [
+				"imagesloaded.pkgd.js",
+				"masonry.pkgd.js",
+				"masonry-common.js"
+			],
+			"styles": "Masonry.css",
+			"position": "top"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "MasonryMainPage"
+	},
+	"Hooks": {
+		"BeforePageDisplay": [
+			"MasonryMainPage::addIECompatibilityMetaTag"
+		],
+		"ParserFirstCallInit": [
+			"MasonryMainPage::setup"
+		]
+	},
+	"manifest_version": 1
+}
