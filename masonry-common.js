@@ -38,16 +38,16 @@ Array.min = function(array) {
 
 /* Do this Masonry stuff after the page is loaded */
 $(document).ready(function(){
-// initialize
-var $container = $('#mediawiki-masonry-main-page-container');
-  // initialize Masonry after all images have loaded  
-  $container.imagesLoaded( function() {
-    $container.masonry({
-      columnWidth: 310,
-      gutter: 0,
-      itemSelector: '.item'
-    });
-  });
+
+	var containerID = "#mediawiki-masonry-main-page-container";
+	imagesLoaded( containerID, {}, function(){
+		var msnry = new Masonry( containerID, {
+			columnWidth: 310,
+			gutter: 0,
+			itemSelector: '.item'
+		});
+	});
+
 });
 
 

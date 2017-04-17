@@ -136,6 +136,15 @@ class MasonryMainPage
 	 **/
 	static function addIECompatibilityMetaTag (&$out, &$skin) {
 		$out->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
+
+		// There are issues loading Masonry via ResourceLoader in MW 1.27, but not in MW 1.25.
+		// Functionality in other MW versions is unknown at this writing.
+		global $wgServer, $wgExtensionAssetsPath;
+		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/imagesloaded.pkgd.js";
+		$out->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
+		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/masonry.pkgd.js";
+		$out->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
+
 		$out->addModules( 'ext.masonrymainpage.base' );
 	}
 
