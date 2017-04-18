@@ -14,8 +14,6 @@
 	"ResourceModules": {
 		"ext.masonrymainpage.base": {
 			"scripts": [
-				"imagesloaded.pkgd.js",
-				"masonry.pkgd.js",
 				"masonry-common.js"
 			],
 			"styles": "Masonry.css",
@@ -27,9 +25,6 @@
 		"remoteExtPath": "MasonryMainPage"
 	},
 	"Hooks": {
-		"BeforePageDisplay": [
-			"MasonryMainPage::addIECompatibilityMetaTag"
-		],
 		"ParserFirstCallInit": [
 			"MasonryMainPage::setup"
 		]
