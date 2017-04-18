@@ -1,7 +1,7 @@
 <?php
-/** 
+/**
  * The MasonryMainPage extension enables use of Masonry blocks within MediaWiki
- * 
+ *
  * Documentation: https://github.com/enterprisemediawiki/MasonryMainPage
  * Support:       https://github.com/enterprisemediawiki/MasonryMainPage
  * Source code:   https://github.com/enterprisemediawiki/MasonryMainPage
@@ -35,9 +35,8 @@ $dir = dirname( __FILE__ ) . '/';
 # Internationalization
 $wgExtensionMessagesFiles['MasonryMainPage'] = $dir . 'MasonryMainPage.i18n.php';
 
-# The "class" file contains the bulk of a simple parser function extension. 
+# The "class" file contains the bulk of a simple parser function extension.
 $wgAutoloadClasses['MasonryMainPage'] = $dir . 'MasonryMainPage.class.php';
-
 
 // Currently loaded via OutputPage::addScript() from MasonryMainPage.class.php
 // due to issues with loading Masonry with ResourceLoader
@@ -61,10 +60,6 @@ $wgResourceModules['ext.masonrymainpage.base'] = array(
 	'remoteExtPath' => 'MasonryMainPage',
 	'position' => 'top',
 );
-/**
- *  Use a hook to add a meta tag to force IE to not use compatibility mode
- **/
-$wgHooks['BeforePageDisplay'][] = 'MasonryMainPage::addIECompatibilityMetaTag';
 
 # This specifies the function that will initialize the parser function.
 $wgHooks['ParserFirstCallInit'][] = 'MasonryMainPage::setup';

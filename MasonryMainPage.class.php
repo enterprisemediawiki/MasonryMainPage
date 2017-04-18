@@ -2,7 +2,7 @@
 /**
  * The MasonryMainPage extension enables the use of Masonry blocks
  * within MediaWiki.
- * 
+ *
  * Documentation: https://github.com/enterprisemediawiki/MasonryMainPage
  * Support:       https://github.com/enterprisemediawiki/MasonryMainPage
  * Source code:   https://github.com/enterprisemediawiki/MasonryMainPage
@@ -21,8 +21,8 @@ class MasonryMainPage
 
 		$parser->setFunctionHook(
 			// name of parser function
-			// same as $magicWords value set in MasonryMainPage.i18n.php 
-			'masonry-block', 
+			// same as $magicWords value set in MasonryMainPage.i18n.php
+			'masonry-block',
 			array(
 				'MasonryMainPage',  // class to call function from
 				'renderMasonryMainPage' // function to call within that class
@@ -46,6 +46,27 @@ class MasonryMainPage
 		//Run extractOptions on $args
 		$options = self::extractOptions( $frame, $args );
 
+
+		/**
+		 * Adds the following meta tag to the HTML header of all pages
+		 * <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+		 *
+		 * This forces IE to load the page NOT in compatibility mode. Loading
+		 * in compatibility mode breaks the Masonry extension.
+		 **/
+		global $wgOut, $wgServer, $wgExtensionAssetsPath;
+		$wgOut->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
+
+		// There are issues loading Masonry via ResourceLoader in MW 1.27, but not in MW 1.25.
+		// Functionality in other MW versions is unknown at this writing.
+		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/imagesloaded.pkgd.js";
+		$wgOut->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
+		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/masonry.pkgd.js";
+		$wgOut->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
+
+		$wgOut->addModules( 'ext.masonrymainpage.base' );
+
+
 		$itemClass = 'item';
 		if ( $options['width']=="2" ) {
 			$itemClass .= " w2";
@@ -56,9 +77,9 @@ class MasonryMainPage
 		} else {
 			$tableClass = 'class="main-page-box main-page-box-' . $options['color'] . '"';
 		}
-	
+
 		//Define the main output
-		$text = 
+		$text =
 			"<div class='$itemClass'>
 				<div class='item-content'>
 					<table $tableClass>";
@@ -70,9 +91,9 @@ class MasonryMainPage
 		} else {
 			$text .= "<tr><th>" . $options['title'] . "</th></tr>";
 		}
-		
+
 		$body = trim( $options['body'] );
-		
+
 		// This contains the body of the masonry block
 		// Wiki code like links can be included; templates and wiki tables cannot
 		// \n before $body so user input starts on new line without
@@ -92,7 +113,7 @@ class MasonryMainPage
 	 */
 	static function extractOptions( $frame, array $args ) {
 		$options = array();
-	 
+
 		foreach ( $args as $arg ) {
 			$pair = explode( '=', $frame->expand($arg) , 2 );
 			if ( count( $pair ) == 2 ) {
@@ -122,30 +143,6 @@ class MasonryMainPage
 	        }
 
 		return $options;
-	}
-
-	/**
-	 * Adds the following meta tag to the HTML header of all pages
-	 * <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
-	 *
-	 * This forces IE to load the page NOT in compatibility mode. Loading 
-	 * in compatibility mode breaks the Masonry extension.
-	 *
-	 * This function should be called on the 'BeforePageDisplay' hook as follows:
-	 * $wgHooks['BeforePageDisplay'][] = onBeforePageDisplay( OutputPage &$out, Skin &$skin ) { ... }
-	 **/
-	static function addIECompatibilityMetaTag (&$out, &$skin) {
-		$out->addMeta( 'http:X-UA-Compatible', 'IE=9; IE=8; IE=7; IE=EDGE' );
-
-		// There are issues loading Masonry via ResourceLoader in MW 1.27, but not in MW 1.25.
-		// Functionality in other MW versions is unknown at this writing.
-		global $wgServer, $wgExtensionAssetsPath;
-		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/imagesloaded.pkgd.js";
-		$out->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
-		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/masonry.pkgd.js";
-		$out->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
-
-		$out->addModules( 'ext.masonrymainpage.base' );
 	}
 
 }
