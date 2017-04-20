@@ -59,8 +59,6 @@ class MasonryMainPage
 
 		// There are issues loading Masonry via ResourceLoader in MW 1.27, but not in MW 1.25.
 		// Functionality in other MW versions is unknown at this writing.
-		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/imagesloaded.pkgd.js";
-		$wgOut->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
 		$scriptURL = "$wgServer/$wgExtensionAssetsPath/MasonryMainPage/masonry.pkgd.js";
 		$wgOut->addScript( "<script type='text/javascript' src='$scriptURL'></script>" );
 

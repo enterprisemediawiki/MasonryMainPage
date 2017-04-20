@@ -41,7 +41,7 @@ if ( function_exists( 'wfLoadExtension' ) ) {
 		'url'            => 'http://github.com/enterprisemediawiki/MasonryMainPage',
 		'author'         => '[https://www.mediawiki.org/wiki/User:Darenwelsh Daren Welsh]',
 		'descriptionmsg' => 'masonrymainpage-desc',
-		'version'        => '0.3.0'
+		'version'        => '0.4.0'
 	);
 
 
@@ -52,7 +52,7 @@ if ( function_exists( 'wfLoadExtension' ) ) {
 	$wgAutoloadClasses['MasonryMainPage'] = __DIR__ . '/MasonryMainPage.class.php';
 
 	$wgResourceModules['ext.masonrymainpage.base'] = array(
-		'scripts' => array( 'imagesloaded.pkgd.js', 'masonry.pkgd.js', 'masonry-common.js' ),
+		'scripts' => array( 'masonry-common.js' ),
 		'styles' => 'Masonry.css',
 		'localBasePath' => __DIR__,
 		'remoteExtPath' => 'MasonryMainPage',
