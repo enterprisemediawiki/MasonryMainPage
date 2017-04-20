@@ -1,13 +1,12 @@
 MasonryMainPage
-=========================
+===============
 
-This extension enables the use of Masonry blocks in MediaWiki. 
+This extension enables the use of Masonry blocks in MediaWiki.
 
 Masonry is developed by David DeSandro and information about that script can be found at http://masonry.desandro.com
 
-=========================
 USAGE
-=========================
+-----
 
 To enable this extension, append the following to LocalSettings.php
 
@@ -28,13 +27,13 @@ To use this extension in a MediaWiki page, add the following elements to the con
    Begin Masonry Blocks
 
 -->
-{{#masonry-block: title = 
- | width = 
- | color = 
- | body  = 
+{{#masonry-block: title =
+ | width =
+ | color =
+ | body  =
  }}
-{{#masonry-block: title = 
- | body  = 
+{{#masonry-block: title =
+ | body  =
  }}
 <!--
 
@@ -44,18 +43,17 @@ To use this extension in a MediaWiki page, add the following elements to the con
 </div>
 ```
 
-=========================
 OPTIONS
-=========================
+-------
 
 <ul><li>title = Title of your block (optional, will not show a header if omitted).</li>
 <li>width = 1 (or 2) (optional, default is 1).</li>
 <li>color = white (optional, default is green, options include orange, yellow, blue, white, purple, green, and none).</li>
 <li>body = This is the main content. Wiki code like links can be included; templates and wiki tables cannot.</li></ul>
 
-=========================
 TEMPLATES
-=========================
+---------
+
 Instead of clogging your main page with lots of content, you can also use templates.
 
 For example, you could create Template:Pages That Need Help Block with the content below:
@@ -76,9 +74,8 @@ Then, on the main page, just place {{Pages That Need Help Block}} in the Masonry
 
 
 
-=========================
 BACKGROUND INFO
-=========================
+---------------
 
 The parser function #masonry-block essentially adds the following code and applies some CSS:
 
